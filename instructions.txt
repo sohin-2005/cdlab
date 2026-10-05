@@ -68,3 +68,10 @@ Build one pair at a time: generated files are overwritten by the next build.
     flex for.l
     gcc y.tab.c lex.yy.c -o for
     ./for
+
+
+name4 
+flex program.l
+that creates lex.yy.c
+gcc lex.yy.c -o program -lfl -compile it
+./program. run
