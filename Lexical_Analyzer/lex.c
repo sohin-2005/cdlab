@@ -1,5 +1,3 @@
-/* Lexical analyzer: splits C-like text into tokens.
-   Spaces, tabs and newlines are skipped. */
 #include <stdio.h>
 #include <ctype.h>
 #include <string.h>
@@ -8,11 +6,9 @@ int main(void) {
     char word[64];
     int ch, len, i, is_keyword;
     while ((ch = getchar()) != EOF) {
-        /* 1. skip white space */
         if (isspace(ch)) {
             continue;
         }
-        /* 2. identifier or keyword: starts with a letter or _, then letters, digits, _ */
         if (isalpha(ch) || ch == '_') {
             len = 0;
             while ((isalnum(ch) || ch == '_') && len < 63) {
@@ -24,7 +20,7 @@ int main(void) {
                 return 1;
             }
             word[len] = '\0';
-            if (ch != EOF) ungetc(ch, stdin); /* give back the character ending the word */
+            if (ch != EOF) ungetc(ch, stdin);
             is_keyword = 0;
             for (i = 0; keywords[i] != NULL; i++) {
                 if (strcmp(word, keywords[i]) == 0) {
@@ -33,7 +29,6 @@ int main(void) {
             }
             printf("%s\t%s\n", is_keyword ? "KEYWORD" : "IDENTIFIER", word);
         }
-        /* 3. number: one or more digits */
         else if (isdigit(ch)) {
             len = 0;
             while (isdigit(ch) && len < 63) {
@@ -49,7 +44,6 @@ int main(void) {
             printf("NUMBER\t%s\n", word);
         }
 
-        /* 4. anything else is a single-character symbol */
         else {
             printf("SYMBOL\t%c\n", ch);
         }
