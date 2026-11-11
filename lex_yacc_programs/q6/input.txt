@@ -1,0 +1,5 @@
+if(a<b) x=5;
+if(a<b x=5;
+if a<b) x=5;
+if(a==1) if(b>2) y=a;
+if(a<b) x=;

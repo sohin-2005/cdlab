@@ -1,0 +1,44 @@
+Algorithm: FIRST and FOLLOW of a Grammar
+Step 1: Start
+
+Step 2: Initialize
+- Declare the variables n, count.
+- Declare arrays prod to store productions and result to store FIRST and FOLLOW elements.
+- Define the functions first() and follow().
+Step 3: Read Productions
+1. Read the number of productions n.
+2. Read all the grammar productions and store them in prod.
+Step 4: Read Non-terminal
+1. Read the non-terminal whose FIRST and FOLLOW are to be calculated.
+2. Set count = 0.
+Step 5: Find FIRST(c)
+1. Check whether c is an uppercase letter.
+2. If c is not uppercase:
+   - Add c to the result array.
+   - Return.
+3. Otherwise, check all productions.
+4. If the left-hand side of a production matches c:
+   - If the first symbol on the right-hand side is $, call follow() for that non-terminal.
+   - Else if the first symbol is not uppercase, add it to the result array.
+   - Otherwise, recursively call first() for that symbol.
+5. Return the FIRST elements.
+Step 6: Display FIRST
+1. Print FIRST(c).
+2. Display all elements stored in the result array.
+Step 7: Find FOLLOW(c)
+1. Set count = 0.
+2. Check whether c is the start symbol.
+3. If it is the start symbol, add $ to the result array.
+4. Check all productions and search for c on the right-hand side.
+5. If c is found:
+   - If a symbol exists immediately after c, call first() for the next symbol.
+   - If c is at the end of the production and is not the left-hand-side symbol, recursively call follow() for the left-hand-side non-terminal.
+6. Return the FOLLOW elements.
+Step 8: Display FOLLOW
+1. Print FOLLOW(c).
+2. Display all elements stored in the result array.
+Step 9: Continue
+1. Ask the user whether to continue.
+2. If the choice is 1, repeat from Step 4.
+3. Otherwise, stop.
+Step 10: Stop
