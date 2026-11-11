@@ -99,3 +99,8 @@ int main()
 
     return 0;
 }
+E  -> T E' 
+    E' -> + T E' | e 
+    T  -> F T'
+T' -> * F T' | e 
+    F  -> ( E ) | i
