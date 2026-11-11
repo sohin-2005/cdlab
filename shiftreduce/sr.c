@@ -94,7 +94,7 @@ int main()
 
     return 0;
 }
-
+id+id*id
 E -> E + E
     E -> E * E
     E -> ( E )
