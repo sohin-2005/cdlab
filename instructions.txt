@@ -1,0 +1,70 @@
+ Lexical analyzer:
+    gedit lex.c lexinput.txt lex.txt &
+    gcc lex.c -o lex
+    ./lex
+
+  Epsilon closure:
+    gedit ec.c ecinput.txt ec.txt &
+    gcc ec.c -o ec
+    ./ec
+
+  Remove epsilon transitions:
+    gedit enfa.c enfainput.txt enfa.txt &
+    gcc enfa.c -o enfa
+    ./enfa
+
+  NFA to DFA:
+    gedit nfa.c nfainput.txt nfa.txt &
+    gcc nfa.c -o nfa
+    ./nfa
+
+  DFA minimization:
+    gedit dfa.c dfainput.txt dfa.txt &
+    gcc dfa.c -o dfa
+    ./dfa
+
+  
+    gedit name.l nameinput.txt name.txt &
+    flex name.l
+    gcc lex.yy.c -o name
+    ./name
+
+METHOD 3: YACC + LEX -> YACC + FLEX -> GCC -> RUN
+Applies to these pairs:
+  var.y  + var.l  - variable-name validator
+  calc.y + calc.l - calculator
+  ast.y  + ast.l  - abstract syntax tree
+  for.y  + for.l  - FOR-statement validator
+
+The .y file contains grammar rules; the .l file contains token patterns.
+yacc -d generates y.tab.c and y.tab.h, which these lexers expect.
+Flex generates lex.yy.c. Compile y.tab.c and lex.yy.c together.
+Build one pair at a time: generated files are overwritten by the next build.
+
+  Variable-name validator:
+    gedit var.l var.y varinput.txt var.txt &
+    yacc -d var.y
+    flex var.l
+    gcc y.tab.c lex.yy.c -o var
+    ./var
+
+  Calculator:
+    gedit calc.l calc.y calcinput.txt calc.txt &
+    yacc -d calc.y
+    flex calc.l
+    gcc y.tab.c lex.yy.c -o calc
+    ./calc
+
+  Abstract syntax tree:
+    gedit ast.l ast.y astinput.txt ast.txt &
+    yacc -d ast.y
+    flex ast.l
+    gcc y.tab.c lex.yy.c -o ast
+    ./ast
+
+  FOR-statement validator:
+    gedit for.l for.y forinput.txt for.txt &
+    yacc -d for.y
+    flex for.l
+    gcc y.tab.c lex.yy.c -o for
+    ./for
