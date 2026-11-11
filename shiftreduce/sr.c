@@ -94,3 +94,8 @@ int main()
 
     return 0;
 }
+
+E -> E + E
+    E -> E * E
+    E -> ( E )
+    E -> id
